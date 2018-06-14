@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list>
+        <ion-item-sliding #item *ngFor="let clave of _manejoClave.mostrarClaves; let i = index">
+          <ion-item>
+              <h2>{{clave.url | uppercase}}</h2>
+              <p> <ion-icon ios="ios-contact" md="md-contact"></ion-icon> Usuario: {{ clave.usuario }} </p>
+              <p> <ion-icon ios="ios-lock" md="md-lock" (click)="ver(i)"></ion-icon> Clave: {{ clave.clave }} </p>
+              <p> <ion-icon ios="ios-book" md="md-book"></ion-icon> Descripcion: {{ clave.descripcion }} </p>
+              
+          </ion-item>
+          <ion-item-options side="right">
+              <button ion-button (click)="editar(i)">Editar</button>
+              <button ion-button color="danger" (click)="borrar(i)">Borrar</button>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
+</ion-content>

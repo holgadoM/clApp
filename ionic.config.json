@@ -1,0 +1,8 @@
+{
+  "name": "clApp",
+  "app_id": "1d4e0a36",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}

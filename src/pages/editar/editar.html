@@ -1,0 +1,31 @@
+<ion-header>
+
+  <ion-navbar color="secondary">
+    <ion-title>editar</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-list>
+        <ion-item>
+            <ion-label color="primary">Sitio:</ion-label>
+            <ion-input type="text" placeholder="Escriba aqui..." name="url" [(ngModel)]="clave.url"> </ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label color="primary">Usuario:</ion-label>
+            <ion-input type="text" placeholder="Escriba aqui..." name="usuario" [(ngModel)]="clave.usuario"> </ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label color="primary">Clave:</ion-label>
+            <ion-input type="text" placeholder="Escriba aqui..." name="clave" [(ngModel)]="clave.clave"> </ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label color="primary">Descripcion:</ion-label>
+          <ion-input type="text" placeholder="Escriba aqui..." name="descripcion" [(ngModel)]="clave.descripcion"> </ion-input>
+        </ion-item>
+      <button ion-button block outline (click)="guardar()" > Guardar </button>
+    </ion-list>
+
+</ion-content>
