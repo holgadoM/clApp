@@ -2,14 +2,8 @@ import { Injectable, ViewChild } from '@angular/core';
 import { Clave } from "../../clases/clave.class";
 import { Nav } from 'ionic-angular';
 
-import { Observable } from 'rxjs/observable';
-import { AngularFirestore,AngularFirestoreCollection } from 'angularfire2/firestore';
-import { AngularFireAuth } from 'angularfire2/auth';
 import firebase from 'firebase';
-
-import { UsuarioProvider } from '../usuario/usuario';
 import { LoginPage } from '../../pages/login/login';
-
 import { ToAstProvider } from "../to-ast/to-ast";
 
 

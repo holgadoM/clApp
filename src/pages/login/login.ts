@@ -21,7 +21,7 @@ export class LoginPage {
   }
 
   login(){
-    let log = this.userLgin.login();
+    this.userLgin.login();
     this.estaLoguedo();
   }
 

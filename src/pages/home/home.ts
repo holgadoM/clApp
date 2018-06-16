@@ -3,7 +3,6 @@ import { NavController, AlertController } from 'ionic-angular';
 import { ManejoClavesProvider } from '../../providers/manejo-claves/manejo-claves';
 import { Clave } from '../../clases/clave.class';
 import { EditarPage } from '../editar/editar';
-import { LoginPage } from '../login/login';
 import { ToAstProvider } from '../../providers/to-ast/to-ast';
 
 @Component({

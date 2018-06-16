@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 import { ManejoClavesProvider } from "../../providers/manejo-claves/manejo-claves";
 
 import { Clave } from "../../clases/clave.class";
 import { HomePage } from '../home/home';
-import { LoginPage } from '../login/login';
 
 
 @Component({

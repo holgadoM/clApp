@@ -3,7 +3,6 @@ import { GooglePlus } from '@ionic-native/google-plus';
 import  firebase  from "firebase";
 import { Platform } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { Observable } from "rxjs";
 
 @Injectable()
 export class UsuarioProvider {
