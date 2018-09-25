@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
+import { Clipboard } from "@ionic-native/clipboard";
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -11,7 +12,7 @@ import { EditarPage } from "../pages/editar/editar";
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { GooglePlus } from '@ionic-native/google-plus';
+//import { GooglePlus } from '@ionic-native/google-plus';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from "angularfire2/firestore";
@@ -20,6 +21,7 @@ import { AngularFirestoreModule } from "angularfire2/firestore";
 import { ManejoClavesProvider } from "../providers/manejo-claves/manejo-claves";
 import { UsuarioProvider } from '../providers/usuario/usuario';
 import { ToAstProvider } from '../providers/to-ast/to-ast';
+
 
 const config = {
   apiKey: "AIzaSyA28YbKtWV07bZdw4womMr6bnPA-hcQG9U",
@@ -58,9 +60,9 @@ const config = {
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ManejoClavesProvider,
-    GooglePlus,
     UsuarioProvider,
-    ToAstProvider
+    ToAstProvider,
+    Clipboard
   ]
 })
 export class AppModule {}

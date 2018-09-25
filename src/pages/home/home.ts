@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
+import { Clipboard } from '@ionic-native/clipboard';
+
 import { ManejoClavesProvider } from '../../providers/manejo-claves/manejo-claves';
 import { Clave } from '../../clases/clave.class';
 import { EditarPage } from '../editar/editar';
 import { ToAstProvider } from '../../providers/to-ast/to-ast';
+import { AgregarPage } from '../agregar/agregar';
 
 @Component({
   selector: 'page-home',
@@ -16,7 +19,8 @@ export class HomePage {
   constructor(public navCtrl: NavController,
               public _manejoClave:ManejoClavesProvider,
               public alerta:AlertController,
-              public toAst: ToAstProvider) {
+              public toAst: ToAstProvider,
+              private papelera: Clipboard) {
            
               }
 
@@ -58,6 +62,16 @@ export class HomePage {
       this._manejoClave.mostrarClaves[index].clave =  btoa(this._manejoClave.mostrarClaves[index].clave);
       this._manejoClave.mostrarClaves[index].visible = !this._manejoClave.mostrarClaves[index].visible;
     }
+  }
+
+  agregar(){
+    this.navCtrl.push(AgregarPage);
+  }
+
+  copiar(clave:string){
+
+    this.papelera.copy(atob(clave));
+    this.toAst.mostrarToAst("Clave copiada en papelera");
   }
 
 }

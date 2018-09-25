@@ -18,7 +18,7 @@ export class ToAstProvider {
   mostrarToAst(msg:string){
     const toast = this.toAst.create({
       message: msg,
-      duration: 3000
+      duration: 1500
     });
     toast.setPosition("middle");
     toast.present();

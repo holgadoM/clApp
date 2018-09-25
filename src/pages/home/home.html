@@ -1,26 +1,64 @@
 <ion-header>
-  <ion-navbar color="secondary">
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Home</ion-title>
+  <ion-navbar color="primary">
+    <ion-fab top right>
+      <button ion-fab mini (click)="agregar()"><ion-icon name="add"></ion-icon></button>
+    </ion-fab>
+    <ion-title>Gestor de claves</ion-title>
   </ion-navbar>
 </ion-header>
 
+
 <ion-content padding>
+  <ion-card #item *ngFor="let clave of _manejoClave.mostrarClaves; let i = index">
     <ion-list>
-        <ion-item-sliding #item *ngFor="let clave of _manejoClave.mostrarClaves; let i = index">
+        <ion-item-sliding>
+            <ion-item>
+                <h2 text-center><u>{{clave.url | uppercase}}</u></h2> 
+                <ion-row> <ion-icon ios="ios-contact" md="md-contact" text-left></ion-icon> <div class="texto" >{{ clave.usuario }} </div> </ion-row>
+                <ion-row> <ion-icon ios="ios-lock" md="md-lock" ></ion-icon><div class="texto" > {{ clave.clave }}</div> </ion-row>
+                <ion-row *ngIf="clave.descripcion"> <ion-icon ios="ios-book" md="md-book"></ion-icon><div class="texto" > {{ clave.descripcion }}</div> </ion-row>
+                <ion-row *ngIf="!clave.descripcion" class="deshabilitado"> <ion-icon ios="ios-book" md="md-book"></ion-icon><div class="texto"> <i>Sin descripcion</i></div> </ion-row>
+              </ion-item>
+            <ion-item-options side="right">
+              <button ion-button color="danger" (click)="borrar(i)"><ion-icon ios="ios-trash" md="md-trash" class="ion-icono"></ion-icon>Borrar</button>
+            </ion-item-options>
+            <ion-item-options side="left">
+                <button ion-button color="orange" (click)="editar(i)"><ion-icon ios="ios-create" md="md-create" class="ion-icono"></ion-icon>Editar</button>
+              </ion-item-options>
+          </ion-item-sliding>
           <ion-item>
-              <h2>{{clave.url | uppercase}}</h2>
-              <p> <ion-icon ios="ios-contact" md="md-contact"></ion-icon> Usuario: {{ clave.usuario }} </p>
-              <p> <ion-icon ios="ios-lock" md="md-lock" (click)="ver(i)"></ion-icon> Clave: {{ clave.clave }} </p>
-              <p> <ion-icon ios="ios-book" md="md-book"></ion-icon> Descripcion: {{ clave.descripcion }} </p>
-              
+      <ion-row>
+          <ion-icon ios="ios-eye" md="md-eye" (click)="ver(i)"> Ver</ion-icon>
+          <ion-icon ios="ios-copy" md="md-copy" (click)="copiar(clave.clave)" class="icon-derecha"> Copiar</ion-icon>
+      </ion-row>
+    </ion-item>
+    </ion-list>
+  </ion-card>
+
+</ion-content>
+
+<!-- <ion-content class="card-background-page" padding>
+    <ion-card  #item *ngFor="let clave of _manejoClave.mostrarClaves; let i = index">
+        <ion-card-header>
+            {{clave.url | uppercase}}
+        </ion-card-header>
+    <ion-list>
+        <ion-item-sliding>
+          <ion-item>
+              <h2 text-center>{{clave.url | uppercase}}</h2> 
+              <ion-row> <ion-icon ios="ios-contact" md="md-contact" text-left></ion-icon> <div class="texto" >{{ clave.usuario }} </div> </ion-row>
+              <ion-row> <ion-icon ios="ios-lock" md="md-lock" (click)="ver(i)"></ion-icon><div class="texto" > {{ clave.clave }}</div> <ion-icon ios="ios-copy" md="md-copy" (click)="copiar(clave.clave)" class="icon-derecha"></ion-icon> </ion-row>
+              <ion-row *ngIf="clave.descripcion"> <ion-icon ios="ios-book" md="md-book"></ion-icon><div class="texto" > {{ clave.descripcion }}</div> </ion-row>
+              <ion-row *ngIf="!clave.descripcion" class="deshabilitado"> <ion-icon ios="ios-book" md="md-book"></ion-icon><div class="texto"> <i>Sin descripcion</i></div> </ion-row>
           </ion-item>
+          <ion-item-divider></ion-item-divider>
           <ion-item-options side="right">
               <button ion-button (click)="editar(i)">Editar</button>
               <button ion-button color="danger" (click)="borrar(i)">Borrar</button>
           </ion-item-options>
         </ion-item-sliding>
       </ion-list>
-</ion-content>
+      </ion-card>
+  
+
+</ion-content> -->

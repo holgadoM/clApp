@@ -17,15 +17,15 @@ export class ManejoClavesProvider {
   public uid = "";
 
   constructor(private toAst:ToAstProvider){
-
-    firebase.auth().onAuthStateChanged( user =>{
-      if(user){
-       this.uid = user.uid;
-       this.CargarClaves();
-      }else{
-        this.nav.setRoot(LoginPage);
-      }
-    });
+    this.CargarClaves();
+    // firebase.auth().onAuthStateChanged( user =>{
+    //   if(user){
+    //    this.uid = user.uid;
+    //    this.CargarClaves();
+    //   }else{
+    //     this.nav.setRoot(LoginPage);
+    //   }
+    // });
 
     // aux.ref("asd").set({
     //   nombre:"asd",
@@ -40,53 +40,61 @@ export class ManejoClavesProvider {
   }
 
 
-  // CargarClaves(){
-  //   if ( localStorage.getItem("claves") ) {
-      
-  //     let aux = JSON.parse(localStorage.getItem("claves"));
-  //     this.claves = JSON.parse(localStorage.getItem("claves"));
-      
-  //     this.mostrarClaves = aux;
-  //   }
-  // }
   CargarClaves(){
-    this.mostrarClaves = [];
-
-    this.db.ref('clave/'+this.uid).once('value',(rst)=>{
-      rst.forEach( item =>{
-        this.mostrarClaves.push(item.val());
-      } )
+    if ( localStorage.getItem("claves") ) {
       
-    });
+      let aux = JSON.parse(localStorage.getItem("claves"));
+      this.claves = JSON.parse(localStorage.getItem("claves"));
+      
+      this.mostrarClaves = aux;
+    }
   }
+  // CargarClaves(){
+  //   this.mostrarClaves = [];
 
-  agregarClave(nuevaClave:Clave){
-    let NClave = new Clave(nuevaClave);
-     NClave.clave = btoa( NClave.clave );
-     this.mostrarClaves.push(NClave);
+  //   this.db.ref('clave/'+this.uid).once('value',(rst)=>{
+  //     rst.forEach( item =>{
+  //       this.mostrarClaves.push(item.val());
+  //     } )
+      
+  //   });
+  // }
 
-    this.db.ref('clave/'+this.uid).push(NClave);
+  // agregarClave(nuevaClave:Clave){
+  //   let NClave = new Clave(nuevaClave);
+  //    NClave.clave = btoa( NClave.clave );
+  //    this.mostrarClaves.push(NClave);
+  //    console.log(this.mostrarClaves);
+
+  //   this.db.ref('clave/'+this.uid).push(NClave);
 
     
-  }
+  // }
   
 
-//   agregarClave( nueva:Clave ){
-//     let NClave = new Clave(nueva);
-//     NClave.clave = btoa( NClave.clave );
-//     this.claves.push(NClave);
-//     this.GuardaLocal();
-//   }
+  agregarClave( nueva:Clave ){
+    let NClave = new Clave(nueva);
+    NClave.clave = btoa( NClave.clave );
+    this.claves.push(NClave);
+    this.GuardaLocal();
+  }
 
-//   GuardaLocal(){
-//     localStorage.setItem("claves", JSON.stringify(this.claves));
-//     this.CargarClaves();
-//   }
+  GuardaLocal(){
+    localStorage.setItem("claves", JSON.stringify(this.claves));
+    this.CargarClaves();
+  }
 
   borrarLista( index:number ){
     this.mostrarClaves.splice(index,1);
+    this.claves.splice(index,1);
     
-    this.db.ref('clave/'+this.uid).set(this.mostrarClaves);
+    //this.db.ref('clave/'+this.uid).set(this.mostrarClaves);
+    this.ActualizarLocal();
+ }
+
+ ActualizarLocal(){
+   localStorage.removeItem("claves");
+   localStorage.setItem("claves", JSON.stringify(this.claves));
  }
 
 actualizarListaIndex( id:number , claveActu:Clave ){

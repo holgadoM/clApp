@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { GooglePlus } from '@ionic-native/google-plus';
+// import { GooglePlus } from '@ionic-native/google-plus';
 import  firebase  from "firebase";
 
 import { UsuarioProvider } from "../../providers/usuario/usuario";
@@ -16,14 +16,15 @@ export class LoginPage {
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams, 
-              public googleLogin:GooglePlus,
               public userLgin:UsuarioProvider) {    
   }
 
   login(){
-    this.userLgin.login();
-    this.estaLoguedo();
+    // this.userLgin.login();
+    // this.estaLoguedo();
+    this.navCtrl.setRoot(HomePage);
   }
+  
 
   estaLoguedo(){
     firebase.auth().onAuthStateChanged( user =>{
